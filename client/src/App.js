@@ -1,7 +1,5 @@
 import React from "react";
-
-import { Book } from "./Components/Book"
-
+import {Book} from "./Components/Book"
 
 function App() {
   return (
@@ -12,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
