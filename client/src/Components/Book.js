@@ -5,11 +5,18 @@ const getBooksQuery = gql`
  {
   books{
     name
+	id
     genre
   }
 }
 `
+const RenderBooks = ({data}) => {
+	if (data.loading) return <p>Loading...</p>
 
+	return data.books.map((book, index) => {
+		return <li keys={book.id}>{book.name}</li>
+	})
+}
 export const Book = () => {
 
 	const { loading, error, data } = useQuery(getBooksQuery)
@@ -24,7 +31,7 @@ export const Book = () => {
 	return (
 		<>
 			<ul id="book-list">
-				<li>Book Name</li>
+				<RenderBooks data={data}/>
 			</ul>
 		</>
 	);

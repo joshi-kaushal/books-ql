@@ -1,11 +1,13 @@
 import React from "react";
-import {Book} from "./Components/Book"
+import { Book } from "./Components/Book"
+import { AddBook } from "./Components/AddBook"
 
 function App() {
   return (
     <div className="App">
       <h1>Front end</h1>
       <Book />
+      <AddBook />
     </div>
   );
 }
