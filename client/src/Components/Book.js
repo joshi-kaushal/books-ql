@@ -1,15 +1,8 @@
 
 import { useQuery, gql } from "@apollo/client";
 
-const getBooksQuery = gql`
- {
-  books{
-    name
-	id
-    genre
-  }
-}
-`
+import { getBooksQuery } from "../queries/queries"
+
 const RenderBooks = ({data}) => {
 	if (data.loading) return <p>Loading...</p>
 
@@ -20,10 +13,6 @@ const RenderBooks = ({data}) => {
 export const Book = () => {
 
 	const { loading, error, data } = useQuery(getBooksQuery)
-
-	if (data) {
-		console.log("data: ", data);
-	}
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error :(</p>;
