@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 
 import schema from "./schema/schema.js";
 
-mongoose.connect('mongodb+srv://kaushal:books-ql@cluster0.bapmn.mongodb.net/boooks?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://kaushal:booksql@cluster0.9ldef.mongodb.net/books?retryWrites=true&w=majority')
 mongoose.connection.once('open', () => console.log(`connected to database!`))
 
 const app = express()
