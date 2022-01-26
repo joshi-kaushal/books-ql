@@ -4,7 +4,7 @@ import { AddBook } from "./Components/AddBook"
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" id="main">
       <h1>Front end</h1>
       <Book />
       <AddBook />

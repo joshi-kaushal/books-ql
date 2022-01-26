@@ -14,13 +14,13 @@ export const BookDetails = ({bookId}) => {
 		return <div id='book-details'>
 			<div>
 				<h2>{data.book.name}</h2>
-				<p>{data.book.genre}</p>
-				<p>{data.book.author.name}</p>
+				<p>Genre: {data.book.genre}</p>
+				<p>Author: {data.book.author.name}</p>
 				<p>All books by this author:</p>
 				<ul className="other-books">
 					{
 						data.book.author.books.map((item) => {
-							return <li key={item.id}>{item.name}</li>;
+							return <li key={item.id} id='other-book'>{item.name}</li>;
 						})
 					}
 				</ul>

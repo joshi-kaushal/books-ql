@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
 import {
   ApolloClient,
@@ -11,7 +11,7 @@ import {
 
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache()
 });
 
@@ -21,5 +21,5 @@ ReactDOM.render(
       <App />
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

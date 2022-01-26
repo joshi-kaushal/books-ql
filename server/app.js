@@ -1,16 +1,16 @@
 import express from "express";
 import { graphqlHTTP } from "express-graphql";
-import mongoose from 'mongoose'
+import mongoose from "mongoose"
 import cors from "cors"
 import schema from "./schema/schema.js";
 
-mongoose.connect('mongodb+srv://kaushal:booksql@cluster0.9ldef.mongodb.net/books?retryWrites=true&w=majority')
-mongoose.connection.once('open', () => console.log(`connected to database!`))
+mongoose.connect("mongodb+srv://kaushal:booksql@cluster0.9ldef.mongodb.net/books?retryWrites=true&w=majority")
+mongoose.connection.once("open", () => console.log(`connected to database!`))
 
 const app = express()
 app.use(cors())
 
-app.use('/graphql', graphqlHTTP({
+app.use("/graphql", graphqlHTTP({
 	schema,
 	graphiql: true
 }))
