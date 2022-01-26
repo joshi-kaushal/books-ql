@@ -1,8 +1,9 @@
-import react, { useState } from 'react'
+import { useState } from 'react'
+import { useQuery, useMutation } from "@apollo/client";
+import { flowRight as compose } from 'lodash';
 
-import { useQuery, gql } from "@apollo/client";
-
-import { getAuthorsQuery } from "../queries/queries";
+import { getAuthorsQuery } from "../gql/queries"
+import { addBookMutation } from "../gql/muations"
 
 const RenderAuthors = ({data}) => {
 	if (data.loading) return <option disabled>Loading authors...</option>
@@ -12,20 +13,21 @@ const RenderAuthors = ({data}) => {
 	})
 }
 
-
 export const AddBook = () => {
 	const [name, setName] = useState("")
 	const [genre, setGenre] = useState("")
-	const [author, setAuthor] = useState("")
+	const [authorId, setAuthorId] = useState("")
+	
+	const { loading, error, data } = useQuery(getAuthorsQuery)
 
+	const [addBook] = useMutation(addBookMutation, {
+		variables: { name, genre, authorId }
+	})
 
 	const handleSubmit = e => {
 		e.preventDefault()
-
-		console.log(`${name} -> ${genre} -> ${author}`)
+		addBook()
 	}
-	
-	const { loading, error, data } = useQuery(getAuthorsQuery)
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error :(</p>;
@@ -42,7 +44,7 @@ export const AddBook = () => {
 			</div>
 			<div className="field">
 				<label>Author:</label>
-				<select onChange={e => setAuthor(e.target.value)}>
+				<select onChange={e => setAuthorId(e.target.value)}>
 					<option>Select author</option>
 					<RenderAuthors data={data}/>
 				</select>

@@ -1,13 +1,13 @@
 
 import { useQuery, gql } from "@apollo/client";
 
-import { getBooksQuery } from "../queries/queries"
+import { getBooksQuery } from "../gql/queries"
 
 const RenderBooks = ({data}) => {
 	if (data.loading) return <p>Loading...</p>
 
 	return data.books.map((book, index) => {
-		return <li keys={book.id}>{book.name}</li>
+		return <li key={book.id}>{book.name}</li>
 	})
 }
 export const Book = () => {
