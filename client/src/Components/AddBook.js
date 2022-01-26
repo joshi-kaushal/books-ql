@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useQuery, useMutation } from "@apollo/client";
-import { flowRight as compose } from 'lodash';
 
-import { getAuthorsQuery } from "../gql/queries"
+import { getAuthorsQuery, getBooksQuery } from "../gql/queries"
 import { addBookMutation } from "../gql/muations"
 
 const RenderAuthors = ({data}) => {
@@ -21,7 +20,8 @@ export const AddBook = () => {
 	const { loading, error, data } = useQuery(getAuthorsQuery)
 
 	const [addBook] = useMutation(addBookMutation, {
-		variables: { name, genre, authorId }
+		variables: { name, genre, authorId },
+		refetchQueries: [{ query: getBooksQuery}]
 	})
 
 	const handleSubmit = e => {
